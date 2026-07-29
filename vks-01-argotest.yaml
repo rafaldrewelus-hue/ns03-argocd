@@ -30,7 +30,7 @@ spec:
       machineDeployments:
         - class: node-pool
           name: vks-01-argotest-np-s526
-          replicas: 1
+          replicas: 3
           metadata:
             annotations:
               run.tanzu.vmware.com/resolve-os-image: os-name=photon, content-library=cl-0908154908d095ec4
