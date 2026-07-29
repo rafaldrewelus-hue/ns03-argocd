@@ -1,0 +1,19 @@
+apiVersion: vmoperator.vmware.com/v1alpha5
+kind: VirtualMachine
+metadata:
+  name: vm-01-argotest
+  labels:
+    vm-selector: vm-01-argotest
+spec:
+  className: best-effort-medium
+  # Friendly image name: ubuntu-24.04-server-cloudimg-amd64
+  imageName: vmi-0e851b009545b3958
+  storageClass: cluster-mgmt-01a-optimal-datastore-default-policy-autoraid
+  powerState: PoweredOn
+  network:
+    hostName: vm-01-argotest
+  bootstrap:
+    cloudInit:
+      rawCloudConfig:
+        name: vm-01-argotest-bootstrap-secret
+        key: user-data

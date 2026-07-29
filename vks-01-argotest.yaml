@@ -1,0 +1,36 @@
+apiVersion: cluster.x-k8s.io/v1beta2
+kind: Cluster
+metadata:
+  name: vks-01-argotest
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks:
+        - 192.168.156.0/20
+    services:
+      cidrBlocks:
+        - 10.96.0.0/12
+    serviceDomain: cluster.local
+  topology:
+    classRef:
+      name: builtin-generic-v3.7.0
+      namespace: vmware-system-vks-public
+    version: v1.35.5---vmware.1-vkr.1
+    variables:
+      - name: vmClass
+        value: best-effort-medium
+      - name: storageClass
+        value: cluster-mgmt-01a-optimal-datastore-default-policy-autoraid
+    controlPlane:
+      replicas: 1
+      metadata:
+        annotations:
+          run.tanzu.vmware.com/resolve-os-image: os-name=photon, content-library=cl-0908154908d095ec4
+    workers:
+      machineDeployments:
+        - class: node-pool
+          name: vks-01-argotest-np-s526
+          replicas: 1
+          metadata:
+            annotations:
+              run.tanzu.vmware.com/resolve-os-image: os-name=photon, content-library=cl-0908154908d095ec4
