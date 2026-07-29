@@ -5,7 +5,7 @@ metadata:
   labels:
     vm-selector: vm-01-argotest
 spec:
-  className: best-effort-medium
+  className: best-effort-small
   # Friendly image name: ubuntu-24.04-server-cloudimg-amd64
   imageName: vmi-0e851b009545b3958
   storageClass: cluster-mgmt-01a-optimal-datastore-default-policy-autoraid
